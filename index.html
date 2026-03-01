@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gửi emm ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        :root {
+            --primary: #ff4d6d;
+            --secondary: #ff8fa3;
+            --bg: linear-gradient(135deg, #fdf0f0 0%, #ffccd5 100%);
+            --glass: rgba(255, 255, 255, 0.85);
+            --font-main: 'Quicksand', sans-serif;
+            --font-accent: 'Pacifico', cursive;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-main);
+            background: var(--bg);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .heart-fall {
+            position: absolute;
+            top: -10%;
+            color: var(--primary);
+            font-size: 20px;
+            user-select: none;
+            pointer-events: none;
+            animation: fall linear infinite;
+            z-index: 0;
+            opacity: 0.6;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            padding: 35px 25px;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(255, 77, 109, 0.25);
+            width: 90%;
+            max-width: 380px;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            z-index: 10;
+            animation: cardEntrance 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        @keyframes cardEntrance {
+            from { opacity: 0; transform: scale(0.8) translateY(30px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        h3 { 
+            font-family: var(--font-accent); 
+            color: var(--primary); 
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-weight: normal;
+        }
+
+        p, div { font-weight: 600; color: #555; }
+
+        #pin-display { 
+            font-size: 36px; 
+            margin-bottom: 20px; 
+            color: var(--primary); 
+            font-weight: bold; 
+            height: 50px; 
+            letter-spacing: 12px;
+            text-shadow: 0 0 10px rgba(255, 77, 109, 0.2);
+            font-family: var(--font-main);
+        }
+
+        .numpad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px; }
+        
+        .numpad button { 
+            padding: 15px; 
+            font-size: 22px; 
+            border: none; 
+            background: white; 
+            border-radius: 20px; 
+            cursor: pointer; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            color: #444;
+            font-family: var(--font-main);
+            font-weight: 600;
+        }
+
+        .numpad button:active { transform: scale(0.9); background: var(--secondary); color: white; }
+
+        .btn-action {
+            width: 100%; padding: 16px; background: var(--primary); color: white; border: none;
+            border-radius: 50px; font-size: 18px; font-weight: 600; cursor: pointer;
+            box-shadow: 0 10px 20px rgba(255, 77, 109, 0.3); transition: 0.4s;
+            font-family: var(--font-main);
+        }
+
+        .btn-action:hover { background: #ff3355; transform: scale(1.02); }
+
+        #letter-screen, #final-message-screen { display: none; }
+        
+        .letter-content {
+            background: rgba(255, 255, 255, 0.6); 
+            padding: 20px;
+            border-radius: 20px; 
+            text-align: left;
+            line-height: 1.4;
+            color: #444; 
+            max-height: 250px; 
+            overflow-y: auto;
+            margin-bottom: 20px; 
+            border-left: 5px solid var(--primary); 
+            font-size: 1.05rem;
+        }
+
+        #confess-box {
+            display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: white; padding: 40px 30px; border-radius: 35px; width: 85%;
+            max-width: 320px; z-index: 1000; box-shadow: 0 30px 60px rgba(0,0,0,0.2); text-align: center;
+            border: 2px solid var(--primary);
+        }
+
+        #confess-box h4 { font-family: var(--font-main); font-size: 1.2rem; color: #333; margin: 0 0 20px 0; }
+
+        .btn-group { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 25px; }
+        
+        #btn-yes { flex: 2; background: #2ecc71; color: white; border: none; padding: 14px; border-radius: 50px; cursor: pointer; font-weight: bold; font-family: var(--font-main); font-size: 16px; }
+     
+        #btn-no { flex: 1; background: #95a5a6; color: white; border: none; padding: 8px; border-radius: 50px; cursor: pointer; font-family: var(--font-main); font-size: 10px; opacity: 0.8; }
+
+        textarea {
+            width: 100%; height: 110px; padding: 15px; border: 2px solid #ffeef2;
+            border-radius: 20px; margin: 15px 0; font-family: var(--font-main); resize: none; outline: none;
+            font-size: 1rem;
+        }
+
+        .heart-icon { font-size: 60px; animation: beat 1.2s infinite; margin-bottom: 10px; display: inline-block; }
+        @keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+    </style>
+</head>
+<body>
+
+    <div id="login-screen" class="card">
+        <h3>Gửi Emm ❤️</h3>
+        <p style="margin-bottom: 15px;">Nhập ngày sinh nhật của em để mở thư...</p>
+        <div id="pin-display"></div>
+        <div class="numpad">
+            <button onclick="addNumber('1')">1</button><button onclick="addNumber('2')">2</button><button onclick="addNumber('3')">3</button>
+            <button onclick="addNumber('4')">4</button><button onclick="addNumber('5')">5</button><button onclick="addNumber('6')">6</button>
+            <button onclick="addNumber('7')">7</button><button onclick="addNumber('8')">8</button><button onclick="addNumber('9')">9</button>
+            <button onclick="clearPin()" style="color: #e74c3c;">C</button><button onclick="addNumber('0')">0</button>
+        </div>
+        <button class="btn-action" onclick="checkPin()">MỞ THƯ</button>
+    </div>
+
+    <div id="letter-screen" class="card">
+        <div class="heart-icon">✉️</div>
+        <h3>Gửi em...</h3>
+        <div class="letter-content">
+            Gửi em,<br><br>
+            Tớ viết những dòng này vì có một điều tớ đã suy nghĩ khá lâu rồi.<br>
+            Tớ nhận ra tớ có cảm tình với em. Không phải kiểu rung động quá lớn hay cần phải đặt tên ngay cho mối quan hệ này, mà là cảm giác muốn nói chuyện với em nhiều hơn, muốn hiểu em hơn, và mong muốn được tìm hiểu em kĩ càng hơn với một danh phận khác.<br>
+            Tớ chưa muốn gọi đây là tỏ tình. Nếu một ngày tớ làm điều đó, tớ muốn nói trực tiếp. Còn bây giờ, tớ chỉ muốn nói rõ cảm xúc của mình, để mọi thứ có thể bắt đầu một cách chân thành và thoải mái nhất.<br>
+            Nếu em cũng sẵn sàng cho việc tìm hiểu nhau, tớ sẽ rất vui.<br>
+            Còn nếu không, tớ hoàn toàn tôn trọng và vẫn trân trọng em như trước.<br>
+            Dù thế nào, tớ cũng cảm ơn em vì đã đọc đến đây.<br>
+            Tớ mong nhận được câu trả lời từ em.<br>
+            <span style="display:block; text-align:right; margin-top:20px;">
+             Thương nhớ em.
+            </span>
+        </div>
+        <button class="btn-action" onclick="showConfess()">TỚ CÓ ĐIỀU MUỐN HỎI</button>
+    </div>
+
+    <div id="confess-box">
+        <div class="heart-icon">💖</div>
+        <h4>Em đồng ý cho phép tớ được tìm hiểu em nhé ?</h4>
+        <div class="btn-group">
+    <button id="btn-yes" onclick="showFinalInput('yes')">ĐỒNG Ý ❤️</button>
+    <button id="btn-no" onclick="showFinalInput('no')">KHÔNG 😭</button>
+</div>
+    </div>
+
+    <div id="final-message-screen" class="card">
+        <div class="heart-icon">✍️</div>
+        <h3>Cảm ơn em!</h3>
+        <p>Em có muốn nhắn gì cho tớ không ạ?</p>
+        <textarea id="user-message" placeholder="Viết lời nhắn ở đây nhé..."></textarea>
+        <button class="btn-action" id="btn-send-all" onclick="sendFinalEmail()">GỬI CHO TỚ ❤️</button>
+    </div>
+
+    <script>
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('heart-fall');
+        heart.innerHTML = ['❤️','💖','💗','🌸','💕'][Math.floor(Math.random() * 5)];
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => { heart.remove(); }, 5000);
+    }
+    setInterval(createHeart, 300);
+
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyOyzmANbOmHdzDXa1PVUMII83p1w1bvnqLs2lBs4Z77Rkif-zXaTCnBPALwMOsujcw/exec";
+
+    let inputPin = ""; 
+
+    function addNumber(num) {
+        if (inputPin.length < 4) {
+            inputPin += num;
+            document.getElementById('pin-display').innerText = inputPin; 
+        }
+    }
+    function clearPin() { inputPin = ""; document.getElementById('pin-display').innerText = ""; }
+
+    function checkPin() {
+        const correctPin = "2206"
+        if (inputPin === correctPin) {
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('letter-screen').style.display = 'block';
+        } else {
+            alert("Sai rồi nhaaa 😊 Nhập lại đi nè!");
+            clearPin();
+        }
+    }
+
+
+    function showConfess() { document.getElementById('confess-box').style.display = 'block'; }
+
+
+   let selectedAnswer = "";
+
+    function showFinalInput(choice) {
+        selectedAnswer = choice; 
+        document.getElementById('confess-box').style.display = 'none';
+        document.getElementById('letter-screen').style.display = 'none';
+        document.getElementById('final-message-screen').style.display = 'block';
+    }
+
+    function sendFinalEmail() {
+        const message = document.getElementById('user-message').value;
+        const btnSend = document.getElementById('btn-send-all');
+
+        btnSend.innerText = "Đang gửi... ❤️";
+        btnSend.disabled = true;
+
+        const formData = new URLSearchParams();
+        formData.append('pin_code', inputPin); 
+        formData.append('user_answer', selectedAnswer); 
+        formData.append('user_note', message || "Không có lời nhắn");
+        formData.append('time', new Date().toLocaleString("vi-VN"));
+
+        fetch(SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors', 
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: formData.toString()
+        })
+        .then(() => {
+            document.body.innerHTML = `
+                <div class="card">
+                    <div class="heart-icon">🌹🌹🌹</div>
+                    <h3 style="font-family: 'Pacifico', cursive;">Tớ nhận được rồi!</h3>
+                    <p>Cảm ơn đã gửi lời nhắn cho tớ. ❤️</p>
+                    <button class="btn-action" onclick="window.close(); window.location.href='about:blank';">ĐÓNG</button>
+                </div>
+            `;
+        })
+        .catch(err => {
+            console.error("Lỗi gửi:", err);
+            alert("Có chút lỗi nhỏ, tớ sẽ kiểm tra lại!");
+            btnSend.disabled = false;
+            btnSend.innerText = "GỬI LẠI ❤️";
+        });
+    }
+    </script>
+</body>
+</html>
