@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gửi Cậuu ❤️</title>
+    <title>Gửi Khánh Huyền ❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
@@ -161,8 +161,8 @@
 <body>
 
     <div id="login-screen" class="card">
-        <h3>Gửi Cậuu ❤️</h3>
-        <p style="margin-bottom: 15px;">Nhập ngày sinh nhật của cậu để mở thư...</p>
+        <h3>Gửi Emm ❤️</h3>
+        <p style="margin-bottom: 15px;">Nhập ngày sinh nhật của emm để mở thư...</p>
         <div id="pin-display"></div>
         <div class="numpad">
             <button onclick="addNumber('1')">1</button><button onclick="addNumber('2')">2</button><button onclick="addNumber('3')">3</button>
@@ -175,18 +175,18 @@
 
     <div id="letter-screen" class="card">
         <div class="heart-icon">✉️</div>
-        <h3>Gửi cậu...</h3>
+        <h3>Gửi Emm...</h3>
         <div class="letter-content">
-            Gửi cậu,<br><br>
-            Tớ viết những dòng này vì có một điều tớ đã suy nghĩ khá lâu rồi.<br>
-            Tớ nhận ra tớ có cảm tình với cậu. Không phải kiểu rung động quá lớn hay cần phải đặt tên ngay cho mối quan hệ này, mà là cảm giác muốn nói chuyện với cậu nhiều hơn, muốn hiểu cậu hơn, và mong muốn được tìm hiểu cậu kĩ càng hơn với một danh phận khác.<br>
-            Tớ chưa muốn gọi đây là tỏ tình. Nếu một ngày tớ làm điều đó, tớ muốn nói trực tiếp. Còn bây giờ, tớ chỉ muốn nói rõ cảm xúc của mình, để mọi thứ có thể bắt đầu một cách chân thành và thoải mái nhất.<br>
-            Nếu cậu cũng sẵn sàng cho việc tìm hiểu nhau, tớ sẽ rất vui.<br>
-            Còn nếu không, tớ hoàn toàn tôn trọng và vẫn trân trọng cậu như trước.<br>
-            Dù thế nào, tớ cũng cảm ơn cậu vì đã đọc đến đây.<br>
-            Tớ mong nhận được câu trả lời từ cậu.<br>
+            Gửi Emm,<br><br>
+            Anh viết những dòng này vì có một điều anh đã suy nghĩ khá lâu rồi.<br>
+            Anh nhận ra anh có cảm tình với em. Không phải kiểu rung động quá lớn hay cần phải đặt tên ngay cho mối quan hệ này, mà là cảm giác muốn nói chuyện với em nhiều hơn, muốn hiểu em hơn, và mong muốn được tìm hiểu em kĩ càng hơn với một danh phận khác.<br>
+            Anh chưa muốn gọi đây là tỏ tình. Nếu một ngày anh làm điều đó, anh muốn nói trực tiếp. Còn bây giờ, anh chỉ muốn nói rõ cảm xúc của mình, để mọi thứ có thể bắt đầu một cách chân thành và thoải mái nhất.<br>
+            Nếu em cũng sẵn sàng cho việc tìm hiểu nhau, anh sẽ rất vui.<br>
+            Còn nếu không, anh hoàn toàn tôn trọng và vẫn trân trọng em như trước.<br>
+            Dù thế nào, anh cũng cảm ơn em vì đã đọc đến đây.<br>
+            Anh mong nhận được em trả lời từ em.<br>
             <span style="display:block; text-align:right; margin-top:20px;">
-             Thương nhớ cậu.
+             Thương nhớ em.
             </span>
         </div>
         <button class="btn-action" onclick="showConfess()">TỚ CÓ ĐIỀU MUỐN HỎI</button>
@@ -194,7 +194,7 @@
 
     <div id="confess-box">
         <div class="heart-icon">💖</div>
-        <h4>Cậu đồng ý cho phép tớ được tìm hiểu cậu nhé ?</h4>
+        <h4>Em đồng ý cho phép tớ được tìm hiểu em nhé ?</h4>
         <div class="btn-group">
     <button id="btn-yes" onclick="showFinalInput('yes')">ĐỒNG Ý ❤️</button>
     <button id="btn-no" onclick="showFinalInput('no')">KHÔNG 😭</button>
@@ -203,8 +203,8 @@
 
     <div id="final-message-screen" class="card">
         <div class="heart-icon">✍️</div>
-        <h3>Cảm ơn cậu!</h3>
-        <p>Cậu có muốn nhắn gì cho tớ không ạ?</p>
+        <h3>Cảm ơn em!</h3>
+        <p>Em có muốn nhắn gì cho anh không ạ?</p>
         <textarea id="user-message" placeholder="Viết lời nhắn ở đây nhé..."></textarea>
         <button class="btn-action" id="btn-send-all" onclick="sendFinalEmail()">GỬI CHO TỚ ❤️</button>
     </div>
@@ -234,7 +234,7 @@
     function clearPin() { inputPin = ""; document.getElementById('pin-display').innerText = ""; }
 
     function checkPin() {
-        const correctPin = "1110"
+        const correctPin = "2512"
         if (inputPin === correctPin) {
             document.getElementById('login-screen').style.display = 'none';
             document.getElementById('letter-screen').style.display = 'block';
