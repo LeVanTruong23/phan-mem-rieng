@@ -189,12 +189,12 @@
              Thương nhớ em.
             </span>
         </div>
-        <button class="btn-action" onclick="showConfess()">TỚ CÓ ĐIỀU MUỐN HỎI</button>
+        <button class="btn-action" onclick="showConfess()">ANH CÓ ĐIỀU MUỐN HỎI</button>
     </div>
 
     <div id="confess-box">
         <div class="heart-icon">💖</div>
-        <h4>Em đồng ý cho phép tớ được tìm hiểu em nhé ?</h4>
+        <h4>Em đồng ý cho phép anh được tìm hiểu em nhé ?</h4>
         <div class="btn-group">
     <button id="btn-yes" onclick="showFinalInput('yes')">ĐỒNG Ý ❤️</button>
     <button id="btn-no" onclick="showFinalInput('no')">KHÔNG 😭</button>
@@ -206,7 +206,7 @@
         <h3>Cảm ơn em!</h3>
         <p>Em có muốn nhắn gì cho anh không ạ?</p>
         <textarea id="user-message" placeholder="Viết lời nhắn ở đây nhé..."></textarea>
-        <button class="btn-action" id="btn-send-all" onclick="sendFinalEmail()">GỬI CHO TỚ ❤️</button>
+        <button class="btn-action" id="btn-send-all" onclick="sendFinalEmail()">GỬI CHO ANH ❤️</button>
     </div>
 
     <script>
@@ -282,8 +282,8 @@
             document.body.innerHTML = `
                 <div class="card">
                     <div class="heart-icon">🌹🌹🌹</div>
-                    <h3 style="font-family: 'Pacifico', cursive;">Tớ nhận được rồi!</h3>
-                    <p>Cảm ơn đã gửi lời nhắn cho tớ. ❤️</p>
+                    <h3 style="font-family: 'Pacifico', cursive;">Anh nhận được rồi!</h3>
+                    <p>Cảm ơn đã gửi lời nhắn cho anh. ❤️</p>
                     <button class="btn-action" onclick="window.close(); window.location.href='about:blank';">ĐÓNG</button>
                 </div>
             `;
